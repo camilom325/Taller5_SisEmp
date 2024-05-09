@@ -1,0 +1,43 @@
+specVersion: "3.1"
+metadata:
+  name: cadaxo.app
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false
+        backend:
+          - path: /sap
+            url: https://sapes5.sapdevcenter.com
+            client: "002"
+            destination: ES5
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: cadaxo.app
+        ui5Theme: sap_fiori_3
+    - name: sap.collaboration
+        libraries:
+          - name: sap.m
+          - name: sap.ushell
+          - name: sap.ui.core
+          - name: sap.f
+          - name: sap.ui.comp
+          - name: sap.ui.table
+          - name: sap.suite.ui.generic.template
+          - name: sap.suite.ui.generic.app
+          - name: sap.collaboration
+          - name: themelib_sapfiori_3

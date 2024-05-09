@@ -1,0 +1,8 @@
+<mvc:View
+   controllerName="cadaxo.app.controller.App" 
+   xmlns="sap.m"
+   xmlns:s="sap.m.semantic"
+   xmlns:mvc="sap.ui.core.mvc"
+   displayBlock="true">
+   <App id="app" />
+</mvc:View>
